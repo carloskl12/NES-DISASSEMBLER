@@ -1,4 +1,4 @@
-6502d
+pynasm
 =====
 
 1. This tool allows you to disassemble * .nes files and compile * .asm files. 
@@ -54,7 +54,7 @@ Compile the game './nesrc/test/test.asm'
 
 
 
-Compile the game NES test.asm and specify the name under 
+Compile the game './nesrc/test/test.asm' and specify the name under 
 which it is saved
 ~~~~
     $ python3 pynasm.py test.asm myGame.nes
