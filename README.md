@@ -1,20 +1,28 @@
 6502d
 =====
 
-1. I don't know anything about Python. If it doesn't work, I won't know why.
+1. This tool allows you to disassemble * .nes files and compile * .asm files. 
+The disassembler is an adaptation of the one proposed by 
+[Dougeff](https://github.com/nesdoug/NES-DISASSEMBLER), and the compiler is 
+made in C language, which is thanks to the work of loopy published in
+ [NesDev](https://wiki.nesdev.com/w/index.php/Tools).
 
-2. Works with Python 3 on Windows
-
-3. This can and WILL erase files, if they are named the same as your .nes file with extension .bin or .chr or .asm
--Copy the .nes file in an EMPTY folder before attempting this. REALLY! I MEAN IT!
+2. Works with Python 3 on Linux
 
 
 How to use
 ----------
-
-Run 6502d in a command prompt or terminal emulator, and type
+Before starting to work, the compiler and the working folder 'nesrc' must 
+be generated. To simplify this task run pynasm in a command prompt or terminal emulator, and type
 ~~~~
-    $ python3 6502d.py <path_to_nes_file>
+    $ python3 pynasm.py setup
+~~~~
+
+All files must be located in './nesrc' within a folder or directory with the same name as the main file, either * .nes, or * .asm.
+
+To disassemble a * .nes file run pynasm in a command prompt or terminal emulator, and type
+~~~~
+    $ python3 pynasm.py <nes_file>
 ~~~~
 
 If the file is a good .NES file, and the filesize matches the header, it should ask you...
@@ -26,13 +34,33 @@ It really doesn't make much difference, except that you will generate more .asm 
 
 It should generate a .bin file (=the PRG ROM minus the header, not needed for reassembly), a .chr file (if present), and 1 or more .asm file
 
-Assemble with asm6 like this (using the test.nes)
+Assemble with asm6 like this 
 
-asm6 test.asm test.nes
+~~~~
+    $ python3 pynasm.py <asm_file>
+~~~~
 
-(that's it)
+Examples
+---------------
+Disassemble the game './nesrc/test/test.nes'
+~~~~
+    $ python3 pynasm.py test.nes
+~~~~
 
-Troubleshooting
+Compile the game './nesrc/test/test.asm'
+~~~~
+    $ python3 pynasm.py test.asm
+~~~~
+
+
+
+Compile the game NES test.asm and specify the name under 
+which it is saved
+~~~~
+    $ python3 pynasm.py test.asm myGame.nes
+~~~~
+
+Disassembler Troubleshooting
 ---------------
 
 The very first .nes file I tested...Failed the filesize check. Whoever dumped the ROM, put about 64 bytes at the end of the file, a signature. You would have to open the ROM in a hex editor and delete that part to get it to function...or maybe edit the source code.

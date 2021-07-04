@@ -2,6 +2,9 @@
 Thumbs.db
 ehthumbs.db
 
+nesrc/*
+__pycache__/
+
 # Folder config file
 Desktop.ini
 
@@ -13,6 +16,7 @@ $RECYCLE.BIN/
 *.msi
 *.msm
 *.msp
+*.out 
 
 # Windows shortcuts
 *.lnk
