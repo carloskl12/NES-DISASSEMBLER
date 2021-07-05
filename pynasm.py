@@ -46,6 +46,7 @@ if __name__ == '__main__':
         sys.exit(0)
     baseInputName, extension = os.path.splitext(args.file)
     extension = extension.lower()
+    print(f"baseInputName:",baseInputName, '  extension:',extension)
     # Verifica la extensión del archivo de entrada
     if extension not in ('.nes','.asm'):
         raise Exception(f'The file "{args.file}" is not valid, one of type *.nes or *.asm is required')
@@ -57,20 +58,20 @@ if __name__ == '__main__':
     
     
     
-    #%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+    
     # Ejecuta las funciones
     if extension == '.nes':
         dasm6(inputFilename, args.out)
-        outName = '{baseInputName}.asm'
+        outName = f'{baseInputName}.asm'
         if args.out != None:
-            outName = '{args.out}.asm'
+            outName = f'{args.out}.asm'
     elif extension == '.asm':
-        outName = '{baseInputName}.nes'
-        if args.out != None:
+        outName = f'{baseInputName}.nes'
+        if args.out != None and len(args.out)>0:
             outName = args.out
-        
         try:
         #Ejecuta make sobre el directorio especificado
+            print(baseInputName)
             working_dir = f"./{SOURCE_DIR}/{baseInputName}"
             cmd = f"../.{ASMC} {args.file} {outName}"
             s=subprocess.check_output(cmd , 
